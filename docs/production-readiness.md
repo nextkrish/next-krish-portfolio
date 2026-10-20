@@ -10,16 +10,15 @@
 - Canonical metadata for each page, domain-aware sitemap/robots, consistent social previews and truthful Person/WebSite/CreativeWork/FAQPage structured data. Script JSON is escaped.
 - nosniff, frame protection, referrer policy and camera/microphone/location restrictions.
 
-## Before publishing on Vercel
+## Netlify launch status
 
-1. Review the local layout and approve hosting. No deployment has been performed.
-2. Add GMAIL_USER and GMAIL_APP_PASSWORD to the production environment, never a NEXT_PUBLIC_ variable. Use an app password from a Gmail account with 2-Step Verification.
-3. Set NEXT_PUBLIC_SITE_URL to the final HTTPS public origin, or enable Vercel system environment variables so VERCEL_PROJECT_PRODUCTION_URL is available. Preview builds remain non-indexable.
-4. Build using the Next.js preset and the normal npm run build command. Do not use static export: the contact endpoint requires a Node.js function. Its max duration is 30 seconds.
-5. Send a test enquiry through the deployed form and confirm its arrival in the destination inbox. Check reply-to, failure recovery, mobile navigation and asset caching on that deployment.
-6. Run Lighthouse or PageSpeed Insights on the real public deployment (mobile and desktop), fix measured findings, and manually test keyboard/screen reader and physical mobile devices. The non-blocking animated corner loading indicator exits when key content is ready instead of enforcing a three-second wait. Scores must still be measured rather than asserted.
-7. Confirm production robots/canonical/sitemap values and submit the sitemap in Google Search Console. Monitor real Core Web Vitals after sufficient traffic.
-8. If contact traffic grows across server instances, replace the process-local limit with shared rate limiting, add a server-verified anti-abuse challenge, and move email to a transactional provider with delivery monitoring/retries. The portfolio pages themselves can be served from the CDN.
+1. **Done:** The owner approved publishing. [nextkrish.netlify.app](https://nextkrish.netlify.app) is public and deploys automatically from `main` on GitHub.
+2. **Done:** `GMAIL_USER` and a production-only secret `GMAIL_APP_PASSWORD` are in Netlify. The production Next.js build deployed one server function; static export is not used.
+3. **Done:** Netlify's `URL` sets the HTTPS canonical origin. The public homepage reports `index, follow`, robots permits crawling, and the sitemap lists all nine pages. Deploy previews remain non-indexable.
+4. **Done:** A labelled inquiry submitted through the public contact form reached the server-confirmed “Inquiry sent” state. The owner should check Inbox placement and reply-to separately.
+5. **Next:** Run Lighthouse or PageSpeed Insights on the public deployment (mobile and desktop), then manually test keyboard/screen reader behavior and physical mobile devices. Automated scores vary by device and network.
+6. **Next:** Verify ownership in Google Search Console, submit `/sitemap.xml`, and request indexing for the homepage. Monitor real Core Web Vitals after sufficient traffic.
+7. If contact traffic grows across server instances, replace the process-local limit with shared rate limiting, add a server-verified anti-abuse challenge, and move email to a transactional provider with delivery monitoring/retries. The portfolio pages themselves can be served from the CDN.
 
 ## Search visibility
 
@@ -28,15 +27,15 @@ Helpful, original project descriptions, clear identity, crawlable links and accu
 Official references:
 - https://developers.google.com/search/docs/fundamentals/seo-starter-guide
 - https://developers.google.com/search/docs/appearance/ai-features
-- https://vercel.com/docs/environment-variables/system-environment-variables
+- https://docs.netlify.com/environment-variables/overview/
 - https://support.google.com/accounts/answer/185833
 - https://nodemailer.com/usage/using-gmail/
 
 ## Verification scope
 
-See artifacts/qa.md and artifacts/accessibility-v14.json for results. Passing the semantic audit is not a 100/100 Lighthouse accessibility score, nor does it establish real-device performance or guarantee search rankings. Local production-preview delivery is verified: Gmail accepted a labelled form submission, the thank-you card appeared, and Krish confirmed arrival in Inbox on 20 October 2026. Repeat the delivery test after deployment with production environment variables.
+See artifacts/qa.md and artifacts/accessibility-v14.json for results. Passing the semantic audit is not a 100/100 Lighthouse accessibility score, nor does it establish real-device performance or guarantee search rankings. Local production-preview delivery is verified: Gmail accepted a labelled form submission, the thank-you card appeared, and Krish confirmed arrival in Inbox on 20 October 2026. The live Netlify form also reached its server-confirmed success state on 20 October 2026; inbox placement remains to be confirmed.
 
-For step-by-step deployment and the Hobby commercial-use restriction, see [Vercel launch](vercel-launch.md). The site remains local until a hosting choice is confirmed.
+For ongoing operations, see [Netlify launch](netlify-launch.md). [Vercel launch](vercel-launch.md) is retained only as a migration reference.
 
 ## Final v14 verification — 20 October 2026
 
@@ -49,7 +48,7 @@ The final local production homepage Lighthouse 13.5.0 audit measured:
 | Best practices | 100 | 100 |
 | SEO | 66 | 66 |
 
-Mobile LCP was 3.4s, TBT 310ms and CLS 0; desktop LCP 0.7s, TBT 0ms and CLS 0. The requested mobile performance 100 target remains unmet. The SEO blocker is intentional localhost noindex/robots protection, not missing metadata. A public production origin and new production build must enable indexing, followed by another audit. No public score or search position has been verified.
+Mobile LCP was 3.4s, TBT 310ms and CLS 0; desktop LCP 0.7s, TBT 0ms and CLS 0. The requested mobile performance 100 target remains unmet. The local SEO score reflects intentional localhost noindex/robots protection. The public Netlify build has indexable metadata and a live sitemap, but no public Lighthouse score or search position has been verified.
 
 Production build and TypeScript pass. Nine tests pass; all nine content routes/assets/custom 404 pass the production checks. axe-core semantic checks report zero violations on all nine routes. Browser checks cover responsive layouts, Work filtering, route curtain/back recovery, motion-off readability, mobile menu and portrait hover/scroll scatter. Gmail delivery was previously confirmed in Inbox by Krish; no new test email was sent in this revision. See `artifacts/lighthouse-v14.json`, the matching HTML reports, `artifacts/responsive-v14.json`, `artifacts/accessibility-v14.json` and `artifacts/performance-budget-v14.json`.
 

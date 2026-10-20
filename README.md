@@ -1,6 +1,6 @@
 # Next Krish
 
-Krish Kumar's multipage portfolio, built locally in `/Users/mac/PORTFOLIO-NEXT-KRISH`.
+Krish Kumar's multipage portfolio. The source lives at [nextkrish/next-krish-portfolio](https://github.com/nextkrish/next-krish-portfolio) and deploys from `main` to [nextkrish.netlify.app](https://nextkrish.netlify.app).
 
 ## Run
 
@@ -56,17 +56,17 @@ GMAIL_USER=workwithdevskrish@gmail.com
 GMAIL_APP_PASSWORD=your_16_character_google_app_password
 ```
 
-Use a Google **app password**, never the normal Gmail password. [Google setup instructions](https://support.google.com/accounts/answer/185833) require 2-Step Verification. Keep the password out of chat, source control and public `NEXT_PUBLIC_` variables. Restart the local server after configuration. On Vercel, set both values as server environment variables. TLS is required; credentials are never returned to the browser. Enquiries have a `[New inquiry]` subject, all submitted fields and the visitor's reply-to address. The recipient is fixed to the supplied inbox.
+Use a Google **app password**, never the normal Gmail password. [Google setup instructions](https://support.google.com/accounts/answer/185833) require 2-Step Verification. Keep the password out of chat, source control and public `NEXT_PUBLIC_` variables. Restart the local server after configuration. On Netlify, set both values as server environment variables and mark the app password as a secret. TLS is required; credentials are never returned to the browser. Enquiries have a `[New inquiry]` subject, all submitted fields and the visitor's reply-to address. The recipient is fixed to the supplied inbox.
 
 The existing Resend integration remains an optional fallback if its own key and verified sender are configured. The endpoint includes field/payload limits, origin checks, a honeypot and a bounded in-memory rate limit. Gmail acceptance is not a guarantee of inbox placement. For multiple server instances or higher email volume, configure shared rate limiting and a transactional delivery service before scaling the contact endpoint.
 
-Verified on 20 October 2026: Gmail authentication passed after the credential correction. One labelled test was submitted through the production-preview form; Gmail accepted it, the thank-you card appeared, and Krish confirmed arrival in Inbox. The earlier authentication failure correctly preserved the form and showed an unsent error. Use `npm run verify:email` for a connection-only check after future credential changes, then restart the server. Deployed delivery must be tested again after configuring Vercel server environment variables.
+Verified on 20 October 2026: Gmail authentication passed after the credential correction. One labelled test was submitted through the local production-preview form; Gmail accepted it, the thank-you card appeared, and Krish confirmed arrival in Inbox. The earlier authentication failure correctly preserved the form and showed an unsent error. Use `npm run verify:email` for a connection-only check after future credential changes, then restart the server. A second labelled test on the public Netlify deployment reached the form’s server-confirmed “Inquiry sent” state; inbox placement should be checked separately.
 
 ## Search and deployment
 
-Each page has its own title, description and social metadata. The canonical base uses `NEXT_PUBLIC_SITE_URL` or Vercel's production-domain variable. Local and Vercel preview builds are non-indexable; the production HTTPS domain activates canonical URLs, a nine-page sitemap and crawler access. Profile, website, project and FAQ structured data match real visible content. No invented reviews, ratings or project outcomes are marked up.
+Each page has its own title, description and social metadata. The canonical base uses `NEXT_PUBLIC_SITE_URL`, Netlify's production `URL`, or Vercel's production-domain variable. Local and deploy-preview builds are non-indexable; the production HTTPS domain activates canonical URLs, a nine-page sitemap and crawler access. Profile, website, project and FAQ structured data match real visible content. No invented reviews, ratings or project outcomes are marked up.
 
-See [production readiness](docs/production-readiness.md) for deployment checks and the limits of SEO and automated scores. Hosting is intentionally deferred until Krish approves the revision. No ranking or unmeasured Lighthouse score is promised.
+See [production readiness](docs/production-readiness.md) for deployment checks and the limits of SEO and automated scores. Netlify deployment is connected to the GitHub repository. No ranking or unmeasured Lighthouse score is promised.
 
 ## Checks
 
@@ -82,12 +82,12 @@ The contact tests cover validation, malformed input, header injection, length bo
 
 ## Vercel launch guide
 
-See [Vercel launch](docs/vercel-launch.md) for the free-plan limits, GitHub import, server environment variables, final-domain setup and Google Search Console steps. No account creation or deployment has been performed. Old concepts, obsolete captures and unused image variants were removed; the exact list and recovery location are in artifacts/asset-cleanup-v14.json.
+See [Vercel launch](docs/vercel-launch.md) only if moving to that host later. The active deployment is on Netlify. Old concepts, obsolete captures and unused image variants were removed; the exact list and recovery location are in artifacts/asset-cleanup-v14.json.
 
 ## Netlify deployment
 
-The repository includes `netlify.toml` for a Node 22 Next.js build. Netlify's production `URL` is used automatically for canonical metadata, robots and the sitemap; deploy previews remain non-indexable. Add `GMAIL_USER` and `GMAIL_APP_PASSWORD` as private Netlify environment variables so the contact endpoint can deliver enquiries. See [Netlify launch](docs/netlify-launch.md).
+The repository includes `netlify.toml` for a Node 22 Next.js build. Netlify's production `URL` is used automatically for canonical metadata, robots and the sitemap; deploy previews remain non-indexable. Netlify connected the original GitHub repository, published the site at `nextkrish.netlify.app`, and disabled its Powered by Netlify badge. `GMAIL_USER` and a production-only secret `GMAIL_APP_PASSWORD` are configured in Netlify. See [Netlify launch](docs/netlify-launch.md).
 
-Source-image regeneration scripts require the local originals in assets/source and assets/project-captures. Those folders, historical design notes, QA output and output/pdf are ignored by Git and Vercel uploads. Normal builds only need the optimized files in public; those must be committed.
+Source-image regeneration scripts require the local originals in assets/source and assets/project-captures. Those folders, historical design notes, QA output and output/pdf are ignored by Git and are not part of GitHub-triggered Netlify builds. Normal builds only need the optimized files in public; those must be committed.
 
 Final local homepage audit: desktop 100 performance / 100 accessibility / 100 best practices; mobile 85 / 100 / 100. Local SEO 66 reflects intentional noindex protection. Mobile performance 100 remains unmet. See `artifacts/lighthouse-v14.json` and `docs/production-readiness.md` for exact scope and launch limits.
