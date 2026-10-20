@@ -1,0 +1,19 @@
+node_modules/
+.next/
+.netlify/
+out/
+.env*
+!.env.example
+*.tsbuildinfo
+tmp/
+.DS_Store
+
+# Local source originals, historical notes and QA output are not build inputs.
+assets/source/
+assets/project-captures/
+artifacts/
+design/
+output/
+
+# Local deployment and QA reports are reproducible and do not belong in Git.
+*.log

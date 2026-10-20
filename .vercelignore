@@ -1,0 +1,12 @@
+.env*
+.git
+.codex
+.agents
+node_modules
+.next
+tmp
+artifacts
+assets/source
+assets/project-captures
+output
+design

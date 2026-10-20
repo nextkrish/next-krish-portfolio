@@ -1,0 +1,222 @@
+{
+  "version": 2,
+  "updated": "2026-10-19",
+  "status": "Website implemented and verified locally; not deployed",
+  "identity": {
+    "brandName": "Next Krish",
+    "personalName": "Krish Kumar",
+    "headline": "I cook Projects!",
+    "education": {
+      "degree": "Bachelor of Computer Applications (BCA)",
+      "status": "Currently pursuing",
+      "institution": "St. Johns College, Agra",
+      "currentYear": 3,
+      "expectedGraduation": 2027
+    }
+  },
+  "copy": {
+    "heroIntroduction": "Yo! I’m Krish — a BCA student turning ideas into websites.",
+    "about": "Yo! I’m Krish Kumar, the person behind Next Krish. I’m a third-year BCA student at St. Johns College, Agra, working toward becoming a professional software developer. I enjoy turning ideas into websites and exploring the details that make a digital experience feel clear and engaging. Right now, I’m focused on building websites while developing my skills across the wider web stack.",
+    "availability": "Open to website projects",
+    "opportunities": "Open to freelance projects, internships, full-time opportunities, and collaborations."
+  },
+  "contact": {
+    "publicEmail": "workwithdevskrish@gmail.com",
+    "formRecipient": "workwithdevskrish@gmail.com",
+    "phone": "+919536137241",
+    "displayPhone": "+91 95361 37241",
+    "publicLocation": null
+  },
+  "links": {
+    "github": "https://github.com/nextkrish",
+    "instagram": "https://www.instagram.com/nextkrish/",
+    "youtube": "https://www.youtube.com/channel/UCo1H11uUKCsVkBp78hv_tgg",
+    "linkedin": "https://www.linkedin.com/in/nextkrish/",
+    "x": null
+  },
+  "technologies": {
+    "heading": "Tech I work with.",
+    "names": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "React",
+      "Next.js",
+      "Node.js",
+      "Express",
+      "MongoDB",
+      "Tailwind CSS",
+      "GSAP",
+      "Three.js",
+      "Git"
+    ],
+    "proficiencyNote": "User is still learning. Inclusion does not mean mastery. Current commercial capability is websites."
+  },
+  "services": {
+    "current": [
+      "Website development"
+    ],
+    "excludeForNow": [
+      "Full-stack web application delivery",
+      "Backend or database services as a standalone paid offer",
+      "Independent advanced 3D services"
+    ],
+    "description": "Focused website projects with a clear, agreed scope."
+  },
+  "media": {
+    "hero": "assets/source/portrait-warm-rim-light.png",
+    "about": "assets/source/portrait-editorial-v2.png",
+    "logo": "assets/source/nextkrish-logo-original.png",
+    "introVideo": null,
+    "heroAction": "Explore my work",
+    "heroActionIcon": "arrow",
+    "footerLogoOnly": true,
+    "footerLockup": "Symbol to the left of separate text Next Krish, aligned on one horizontal line; upper silver fading through lower half into black. Use symbol only from supplied logo, avoid repeating its embedded wordmark."
+  },
+  "resume": {
+    "status": "Prepared using supplied education and project facts; project technology stacks remain unconfirmed",
+    "pdf": "output/pdf/Krish-Kumar-Resume.pdf",
+    "websiteDownloadPendingBuild": false
+  },
+  "reviews": {
+    "status": "Illustrative drafts only",
+    "publish": false,
+    "reason": "No exact review text or attribution supplied. User recalls positive verbal feedback; sample wording must not be presented as verified quotations.",
+    "drafts": [
+      {
+        "label": "Sample review - draft",
+        "text": "The website feels clean and easy to navigate. The overall design came together nicely."
+      },
+      {
+        "label": "Sample review - draft",
+        "text": "The layout works well for what I had in mind, and the details make it feel considered."
+      },
+      {
+        "label": "Sample review - draft",
+        "text": "The website was delivered on time and looked good when it was handed over."
+      }
+    ]
+  },
+  "projects": [
+    {
+      "name": "RelayUp",
+      "slug": "relayup",
+      "category": "Landing page",
+      "url": "https://relayup.netlify.app/",
+      "description": "A landing page presenting a missed-call follow-up concept for local businesses, with workflow explanations, feature sections, FAQ, and an early-access form interface.",
+      "resumeDescription": "Landing page for a missed-call follow-up concept, with workflow, feature and FAQ sections.",
+      "type": "User-supplied portfolio project",
+      "status": "Live page inspected",
+      "repository": null,
+      "technologies": [],
+      "role": "Website development - supplied by Krish",
+      "clientRelationship": null,
+      "verified": {
+        "pageLoads": true,
+        "visibleSections": [
+          "Workflow",
+          "Features",
+          "Business use cases",
+          "Early access form interface",
+          "FAQ"
+        ],
+        "backendFunctionality": false,
+        "technologyStack": false,
+        "businessResults": false
+      }
+    },
+    {
+      "name": "NextDM",
+      "slug": "nextdm",
+      "category": "Landing page",
+      "url": "https://nextdm.netlify.app/",
+      "description": "A landing page presenting an Instagram DM automation concept, with use cases, workflow explanations, FAQ, and a signup form interface.",
+      "resumeDescription": "Landing page for an Instagram DM automation concept, organized around use cases and workflow explanations.",
+      "type": "User-supplied portfolio project",
+      "status": "Live page inspected",
+      "repository": null,
+      "technologies": [],
+      "role": "Website development - supplied by Krish",
+      "clientRelationship": null,
+      "verified": {
+        "pageLoads": true,
+        "visibleSections": [
+          "Product introduction",
+          "Workflow",
+          "Use cases",
+          "FAQ",
+          "Signup form interface"
+        ],
+        "backendFunctionality": false,
+        "technologyStack": false,
+        "businessResults": false
+      }
+    },
+    {
+      "name": "Velvet Touch Salon",
+      "slug": "velvet-touch-salon",
+      "category": "Business website",
+      "url": "https://velvet-touch-salon.netlify.app/",
+      "description": "A salon website presenting services, team members, a lookbook, and a section for planning a visit.",
+      "resumeDescription": "Business website showcasing salon services, team, lookbook, and visit information.",
+      "type": "User-supplied portfolio project",
+      "status": "Live page inspected",
+      "repository": null,
+      "technologies": [],
+      "role": "Website development - supplied by Krish",
+      "clientRelationship": null,
+      "verified": {
+        "pageLoads": true,
+        "visibleSections": [
+          "Brand introduction",
+          "Services",
+          "Team",
+          "Lookbook",
+          "Book your visit section"
+        ],
+        "backendFunctionality": false,
+        "technologyStack": false,
+        "businessResults": false
+      }
+    },
+    {
+      "name": "Agra Iron Gym",
+      "slug": "agra-iron-gym",
+      "category": "Business website",
+      "url": "https://agrairongym.netlify.app/",
+      "description": "A gym website with sections for the training environment, nutrition, pricing, and visiting or contacting the gym.",
+      "resumeDescription": "Business website featuring training environment, nutrition, pricing, and contact sections.",
+      "type": "User-supplied portfolio project",
+      "status": "Live page inspected",
+      "repository": null,
+      "technologies": [],
+      "role": "Website development - supplied by Krish",
+      "clientRelationship": null,
+      "verified": {
+        "pageLoads": true,
+        "visibleSections": [
+          "Training environment",
+          "Nutrition",
+          "Pricing",
+          "Visit and contact"
+        ],
+        "backendFunctionality": false,
+        "technologyStack": false,
+        "businessResults": false
+      }
+    }
+  ],
+  "missing": {
+    "requiredToBeginBuild": [],
+    "helpfulForCaseStudies": [
+      "Exact contribution and technology stack for each project",
+      "Repository links if public",
+      "Any honest challenge, decision, or lesson for each project"
+    ],
+    "optionalLater": [
+      "Exact genuine review wording and permission",
+      "Domain and hosting choices"
+    ]
+  },
+  "buildAuthorization": "Granted by Krish on 19 October 2026: Start Building the Portfolio Website"
+}

@@ -1,0 +1,9 @@
+[build]
+  command = "npm run build"
+
+[build.environment]
+  NODE_VERSION = "22"
+  NEXT_TELEMETRY_DISABLED = "1"
+
+# Netlify's current Next.js integration supplies the server runtime for
+# /api/contact and image optimization. Static export must remain disabled.
