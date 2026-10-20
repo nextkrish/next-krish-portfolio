@@ -15,7 +15,7 @@
 1. **Done:** The owner approved publishing. [nextkrish.netlify.app](https://nextkrish.netlify.app) is public and deploys automatically from `main` on GitHub.
 2. **Done:** `GMAIL_USER` and a production-only secret `GMAIL_APP_PASSWORD` are in Netlify. The production Next.js build deployed one server function; static export is not used.
 3. **Done:** Netlify's `URL` sets the HTTPS canonical origin. The public homepage reports `index, follow`, robots permits crawling, and the sitemap lists all nine pages. Deploy previews remain non-indexable.
-4. **Done:** A labelled inquiry submitted through the public contact form reached the server-confirmed “Inquiry sent” state. The owner should check Inbox placement and reply-to separately.
+4. **Done:** A labelled inquiry submitted through the public contact form reached the server-confirmed “Inquiry sent” state, and Krish confirmed Inbox receipt. The reply-to address should be checked separately.
 5. **Next:** Run Lighthouse or PageSpeed Insights on the public deployment (mobile and desktop), then manually test keyboard/screen reader behavior and physical mobile devices. Automated scores vary by device and network.
 6. **Next:** Verify ownership in Google Search Console, submit `/sitemap.xml`, and request indexing for the homepage. Monitor real Core Web Vitals after sufficient traffic.
 7. If contact traffic grows across server instances, replace the process-local limit with shared rate limiting, add a server-verified anti-abuse challenge, and move email to a transactional provider with delivery monitoring/retries. The portfolio pages themselves can be served from the CDN.
@@ -33,7 +33,7 @@ Official references:
 
 ## Verification scope
 
-See artifacts/qa.md and artifacts/accessibility-v14.json for results. Passing the semantic audit is not a 100/100 Lighthouse accessibility score, nor does it establish real-device performance or guarantee search rankings. Local production-preview delivery is verified: Gmail accepted a labelled form submission, the thank-you card appeared, and Krish confirmed arrival in Inbox on 20 October 2026. The live Netlify form also reached its server-confirmed success state on 20 October 2026; inbox placement remains to be confirmed.
+See artifacts/qa.md and artifacts/accessibility-v14.json for results. Passing the semantic audit is not a 100/100 Lighthouse accessibility score, nor does it establish real-device performance or guarantee search rankings. Local production-preview delivery is verified: Gmail accepted a labelled form submission, the thank-you card appeared, and Krish confirmed arrival in Inbox on 20 October 2026. The live Netlify form also reached its server-confirmed success state on 20 October 2026, and Krish confirmed Inbox receipt.
 
 For ongoing operations, see [Netlify launch](netlify-launch.md). [Vercel launch](vercel-launch.md) is retained only as a migration reference.
 

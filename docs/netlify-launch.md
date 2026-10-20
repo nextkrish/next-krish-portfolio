@@ -17,7 +17,7 @@ Netlify supplies the production `URL` automatically. The application uses it for
 ## After deployment
 
 1. Confirm `/robots.txt`, `/sitemap.xml`, the résumé and every project page load from the production URL. **Verified on 20 October 2026:** robots allows crawling, the sitemap lists nine canonical URLs, all project pages load, and the résumé returns a PDF.
-2. Submit one labelled enquiry and confirm Inbox delivery. **Submitted on 20 October 2026:** the live form showed its server-confirmed “Inquiry sent” state. Inbox placement still needs the owner’s check.
+2. Submit one labelled enquiry and confirm Inbox delivery. **Verified on 20 October 2026:** the live form showed its server-confirmed “Inquiry sent” state, and Krish confirmed delivery to Inbox.
 3. Run Lighthouse against the public deployment; local scores are not production guarantees.
 4. Add the site to Google Search Console, submit `/sitemap.xml`, and request indexing for the homepage.
 5. Put the final site URL on GitHub, LinkedIn, Instagram and YouTube so Google can connect the Next Krish entity consistently.

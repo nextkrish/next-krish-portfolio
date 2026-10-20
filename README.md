@@ -60,7 +60,7 @@ Use a Google **app password**, never the normal Gmail password. [Google setup in
 
 The existing Resend integration remains an optional fallback if its own key and verified sender are configured. The endpoint includes field/payload limits, origin checks, a honeypot and a bounded in-memory rate limit. Gmail acceptance is not a guarantee of inbox placement. For multiple server instances or higher email volume, configure shared rate limiting and a transactional delivery service before scaling the contact endpoint.
 
-Verified on 20 October 2026: Gmail authentication passed after the credential correction. One labelled test was submitted through the local production-preview form; Gmail accepted it, the thank-you card appeared, and Krish confirmed arrival in Inbox. The earlier authentication failure correctly preserved the form and showed an unsent error. Use `npm run verify:email` for a connection-only check after future credential changes, then restart the server. A second labelled test on the public Netlify deployment reached the form’s server-confirmed “Inquiry sent” state; inbox placement should be checked separately.
+Verified on 20 October 2026: Gmail authentication passed after the credential correction. One labelled test was submitted through the local production-preview form; Gmail accepted it, the thank-you card appeared, and Krish confirmed arrival in Inbox. The earlier authentication failure correctly preserved the form and showed an unsent error. Use `npm run verify:email` for a connection-only check after future credential changes, then restart the server. A second labelled test on the public Netlify deployment reached the form’s server-confirmed “Inquiry sent” state, and Krish confirmed its arrival in Inbox.
 
 ## Search and deployment
 
