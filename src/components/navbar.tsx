@@ -12,11 +12,18 @@ export function Navbar() {
   const [open, setOpen] = useState(false);
   const [hidden, setHidden] = useState(false);
   const last = useRef(0);
+  const hiddenValue = useRef(false);
   const toggle = useRef<HTMLButtonElement>(null);
   const header = useRef<HTMLElement>(null);
   useEffect(() => { setOpen(false); setHidden(false); }, [pathname]);
   useEffect(() => {
-    const scroll = () => { const y = window.scrollY; setHidden(y > 450 && y > last.current && !open); last.current = y; };
+    const scroll = () => {
+      const y = window.scrollY;
+      if (Math.abs(y - last.current) < 5 && y > 100) return;
+      const next = y > 450 && y > last.current && !open;
+      if (next !== hiddenValue.current) { hiddenValue.current = next; setHidden(next); }
+      last.current = y;
+    };
     window.addEventListener("scroll", scroll, { passive: true });
     return () => window.removeEventListener("scroll", scroll);
   }, [open]);

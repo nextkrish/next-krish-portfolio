@@ -18,14 +18,15 @@ export function WorkGrid({ projects }: { projects: Project[] }) {
     busy.current = true;
     const node = grid.current;
     if (!node) { busy.current = false; return; }
-    const out = node.animate([{ opacity: 1, transform: "translateY(0)" }, { opacity: 0, transform: "translateY(10px)" }], { duration: 480, fill: "both", easing: "ease-out" });
+    const out = node.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 200, fill: "both", easing: "ease-out" });
     await out.finished.catch(() => {});
     node.style.opacity = "0"; out.cancel();
     setFilter(value);
     requestAnimationFrame(() => {
-      const enter = node.animate([{ opacity: 0, transform: "translateY(10px)" }, { opacity: 1, transform: "translateY(0)" }], { duration: 750, fill: "both", easing: "cubic-bezier(.16,1,.3,1)" });
-      void enter.finished.then(() => { node.style.removeProperty("opacity"); enter.cancel(); busy.current = false; }).catch(() => { busy.current = false; });
+      // Individual cards own their entrance. A second grid entrance used to
+      // compound the same transforms and make filtering feel sluggish.
+      node.style.removeProperty("opacity"); busy.current = false;
     });
   }
-  return <><div className="work-filters" role="group" aria-label="Filter projects">{["All work", "Landing pages", "Business websites"].map(label => <button key={label} className={filter === label ? "active" : ""} aria-pressed={filter === label} onClick={() => void change(label)}>{label}<span>{label === "All work" ? "04" : "02"}</span></button>)}</div><p className="sr-only" aria-live="polite">{filtered.length} projects shown</p><div ref={grid} className="project-grid filtered-grid">{filtered.map(project => <ProjectCard project={project} key={project.slug} />)}</div></>;
+  return <><div className="work-filters" role="group" aria-label="Filter projects">{["All work", "Landing pages", "Business websites"].map(label => <button key={label} className={filter === label ? "active" : ""} aria-pressed={filter === label} onClick={() => void change(label)}>{label}<span>{label === "All work" ? "04" : "02"}</span></button>)}</div><p className="sr-only" aria-live="polite">{filtered.length} projects shown</p><div ref={grid} className="project-grid filtered-grid">{filtered.map((project, index) => <ProjectCard project={project} key={project.slug} priority={index === 0} />)}</div></>;
 }

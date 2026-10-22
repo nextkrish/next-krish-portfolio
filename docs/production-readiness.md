@@ -3,7 +3,7 @@
 ## Implemented
 
 - Nine pre-rendered content pages, one server email endpoint, custom errors/404, optimized local images and local Latin font subsets preloaded through next/font.
-- Explicit-size responsive project artwork; one-column mobile layout; content-driven chapter spacing; native scrolling; near-viewport word masks without line measurements; offscreen canvas pausing.
+- Explicit-size responsive project artwork; one-column mobile layout; content-driven chapter spacing; Lenis fine-pointer scrolling and native touch scrolling; word masks without line measurements; offscreen canvas pausing.
 - Keyboard navigation, menu focus containment, visible focus, reduced motion, labelled fields/errors and live delivery status. Small-text colors are checked against their page backgrounds. Semantic audit uses axe-core with jsdom; its limits are documented in the JSON report.
 - Original monogram favicon at 16/32/48/64px, 512px icon and 180px Apple icon. Regenerate with scripts/prepare-favicon.py using Pillow.
 - Gmail SMTP over TLS, fixed recipient, reply-to visitor, safe plain-text body, input/origin/payload validation, a honeypot and a bounded per-process rate limit. Credentials are private server variables.
@@ -17,7 +17,7 @@
 3. **Done:** Netlify's `URL` sets the HTTPS canonical origin. The public homepage reports `index, follow`, robots permits crawling, and the sitemap lists all nine pages. Deploy previews remain non-indexable.
 4. **Done:** A labelled inquiry submitted through the public contact form reached the server-confirmed “Inquiry sent” state, and Krish confirmed Inbox receipt. The reply-to address should be checked separately.
 5. **Next:** Run Lighthouse or PageSpeed Insights on the public deployment (mobile and desktop), then manually test keyboard/screen reader behavior and physical mobile devices. Automated scores vary by device and network.
-6. **Next:** Verify ownership in Google Search Console, submit `/sitemap.xml`, and request indexing for the homepage. Monitor real Core Web Vitals after sufficient traffic.
+6. **Done:** Search Console ownership is verified, the sitemap processed successfully with nine discovered pages, and Google accepted the homepage indexing request on 22 October 2026. Monitor indexing and real Core Web Vitals after sufficient traffic.
 7. If contact traffic grows across server instances, replace the process-local limit with shared rate limiting, add a server-verified anti-abuse challenge, and move email to a transactional provider with delivery monitoring/retries. The portfolio pages themselves can be served from the CDN.
 
 ## Search visibility
@@ -55,3 +55,29 @@ Production build and TypeScript pass. Nine tests pass; all nine content routes/a
 The hero and homepage project-card structure render on the server. Portrait dots use 1,868 precomputed points, avoiding runtime pixel sampling. Responsive AVIF/WebP hero variants avoid duplicate portrait loading. Text/filter/route reveals use native browser animations; fine-pointer cursor effects retain lazy GSAP. The optional animated loading indicator is in a corner and does not obscure or lock content.
 
 Removed 85 unused images/previews/archive files, 34.67 MiB. The manifest is `artifacts/asset-cleanup-v14.json`; temporary recovery archive: `/private/tmp/nextkrish-unused-assets-20261020.tar.gz`. Needed runtime assets and regeneration sources remain.
+
+
+## Motion revision v15 — 22 October 2026
+
+- Restored the full-screen loading chapter and coordinated page entrances with its exit. Loader timing includes time before hydration, preventing an additional wait on slower phones. Reduced the route curtain from 1.72 seconds of animation to 0.72 seconds, plus route/network time.
+- Added Lenis 1.3.27 for fine-pointer wheel smoothing. Native scroll keys cancel pending wheel inertia before their default action. Touch, keyboard, focus navigation and reduced-motion behavior retain native scrolling. Menu/loading/route locks stop and resume the same instance.
+- Replaced independently nested project/service entrances with one sequence per card. The shared footer is observed once independently of page route effects. Completed reveals remain completed when scrolling back.
+- Mask padding travels with each word, preserving italic overhangs and punctuation. Hover bounds are cached; scroll callbacks avoid repeated React state changes. The first Work image is preloaded, project image sizes match the actual grid, and Work filter counts have sufficient contrast.
+- Production build, TypeScript and all 12 tests pass. The added regressions cover footer replay prevention, accessible mask cleanup, card ownership, filtered cards and curtain coordination. All nine content routes/assets/custom 404 pass production checks. The semantic axe audit reports zero violations on all nine pages.
+- Browser checks cover 15 route/viewport combinations at 320, 393, 768 and 1440 pixels with no horizontal overflow. Also checked filtering, mobile menu navigation, motion-off readability, one entrance per project card, footer persistence across navigation, full-screen loader geometry, blank curtain completion and intact footer punctuation.
+- No new enquiry email was sent during this visual revision. The previously confirmed delivery integration and search metadata are retained.
+
+Reports and screenshots are local ignored artifacts under `artifacts/`, with the `v15` suffix. They are measurements of the local optimized production preview, not production-site promises. Desktop and mobile Lighthouse audits run sequentially to avoid competing for CPU. The full-screen loader is an intentional opening animation with a bounded wait; a 100 performance score is not guaranteed.
+
+
+### Local Lighthouse measurements
+
+Lighthouse 13.5.0, simulated mobile / desktop, sequential runs:
+
+| Page / device | Performance | Accessibility | Best practices | SEO |
+| --- | ---: | ---: | ---: | ---: |
+| Home / desktop | 99 | 100 | 100 | 66 |
+| Home / mobile, final local run | 75 | 100 | 100 | 66 |
+| Work / mobile, final local run | 79 | 100 | 100 | 66 |
+
+Mobile runs varied substantially during this session (Home 75–93; Work 79–91). Background CPU activity was present on the host. The final local runs are retained rather than selecting only the highest scores. Their LCP was about 3.5s; total blocking time was 565ms for Home and 440ms for Work. CLS was zero in all three runs. Local SEO 66 reflects intentional localhost noindex/robots protection. These results do not establish a mobile performance improvement on the public deployment; verify that separately. See `artifacts/lighthouse-v15.json` and the matching full reports.

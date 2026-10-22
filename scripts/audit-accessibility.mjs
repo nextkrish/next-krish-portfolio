@@ -14,5 +14,5 @@ for (const path of paths) {
   console.log(path, result.violations.length ? JSON.stringify(report.pages.at(-1).violations) : `PASS (${result.passes.length} rules)`);
   dom.window.close();
 }
-await writeFile("artifacts/accessibility-v14.json", JSON.stringify(report, null, 2));
+await writeFile("artifacts/accessibility-v15.json", JSON.stringify(report, null, 2));
 if (report.pages.some(page => page.violations.length)) process.exitCode = 1;

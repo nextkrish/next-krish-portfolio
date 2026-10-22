@@ -6,5 +6,5 @@ const html=await response.text();
 const scripts=[...new Set([...html.matchAll(/<script[^>]+src="([^"]+\.js[^"]*)"/g)].map(m=>m[1]))];
 const sizes=await Promise.all(scripts.map(async path=>{const content=Buffer.from(await (await fetch(new URL(path,base))).arrayBuffer());return {path,raw:content.length,brotli:brotliCompressSync(content,{params:{[constants.BROTLI_PARAM_QUALITY]:5}}).length};}));
 const report={scope:'Static initial-script transfer estimate only; not Lighthouse, Core Web Vitals, runtime CPU or real-user performance.',initialScripts:sizes.length,rawBytes:sizes.reduce((s,r)=>s+r.raw,0),estimatedBrotliBytes:sizes.reduce((s,r)=>s+r.brotli,0),scripts:sizes};
-await writeFile('artifacts/performance-budget-v14.json',JSON.stringify(report,null,2));
+await writeFile('artifacts/performance-budget-v15.json',JSON.stringify(report,null,2));
 console.log(JSON.stringify({initialScripts:report.initialScripts,rawKB:Math.round(report.rawBytes/1024),estimatedBrotliKB:Math.round(report.estimatedBrotliBytes/1024)}));
