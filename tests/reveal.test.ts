@@ -74,3 +74,23 @@ test('a route curtain delays entrances until the new page is ready', () => {
   assert.equal(starts.length, 2);
   cleanup(); dom.window.close();
 });
+
+test('the review fan staggers stable slots once and leaves hover surfaces to CSS', () => {
+  const { root, dom, starts, show } = setup('<main><div class="review-fan">' + [1, 2, 3].map(i => `<article class="review-slot" tabindex="0"><div class="review-card"><p>Review ${i}</p><span class="eyebrow">Sample</span></div></article>`).join('') + '</div></main>');
+  const timings: number[] = [];
+  const animate = dom.window.HTMLElement.prototype.animate;
+  dom.window.HTMLElement.prototype.animate = function (this: HTMLElement, frames: Keyframe[], options: KeyframeAnimationOptions) {
+    timings.push(Number(options.delay));
+    return animate.call(this, frames, options);
+  };
+  const cleanup = createReveals(root);
+  const fan = root.querySelector<HTMLElement>('.review-fan')!;
+  show(fan);
+  assert.deepEqual(timings, [0, 140, 280]);
+  assert.equal(starts.length, 3);
+  assert.ok(starts.every(node => node.classList.contains('review-slot')));
+  show(fan); dom.window.dispatchEvent(new dom.window.Event('portfolio:content')); show(fan);
+  assert.equal(starts.length, 3);
+  assert.equal(fan.dataset.motionRuns, '1');
+  cleanup(); dom.window.close();
+});

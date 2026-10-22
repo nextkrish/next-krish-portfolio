@@ -129,7 +129,7 @@ export function createReveals(root: HTMLElement, footer = false) {
       }
       return;
     }
-    const selector = "h1,h2,h3,h4,p,.eyebrow,summary,.tech-item,.text-link,.button,.case-meta,.contact-socials a,.contact-direct>a,.work-filters,.about-portrait,.intro-object,.review-card,[data-reveal='up'],[data-reveal='card'],.form-field,.inquiry-kinds,[data-hero-detail],.case-back,.hero-meta,.hero-bottom,.curiosity-caption,.project-art,.service-action,.service-art";
+    const selector = "h1,h2,h3,h4,p,.eyebrow,summary,.tech-item,.text-link,.button,.case-meta,.contact-socials a,.contact-direct>a,.work-filters,.about-portrait,.intro-object,.review-fan,[data-reveal='up'],[data-reveal='card'],.form-field,.inquiry-kinds,[data-hero-detail],.case-back,.hero-meta,.hero-bottom,.curiosity-caption,.project-art,.service-action,.service-art";
     root.querySelectorAll<HTMLElement>(selector).forEach(node => {
       if (records.has(node) || node.closest('[data-no-reveal],.window-bar,.sr-only,[aria-live],.reveal-word-mask')) return;
       if (node.closest('[aria-hidden="true"]') && !node.matches('.project-art,.service-art')) return;
@@ -138,11 +138,15 @@ export function createReveals(root: HTMLElement, footer = false) {
       const card = node.closest<HTMLElement>("[data-reveal='card']");
       if (card && card !== node) return;
       if (node.closest('details:not([open]) .faq-answer')) return;
-      const parent = node.parentElement?.closest('.case-meta,.form-field,.inquiry-kinds,[data-hero-detail],.hero-meta,.hero-bottom,.curiosity-caption,.review-card,.intro-object,.about-portrait');
+      const parent = node.parentElement?.closest('.case-meta,.form-field,.inquiry-kinds,[data-hero-detail],.hero-meta,.hero-bottom,.curiosity-caption,.review-fan,.intro-object,.about-portrait');
       if (parent && parent !== node) return;
       if (node.matches("[data-reveal='up']") && node.querySelector('h1,h2,h3,h4,p')) return;
       if (node.contains(document.activeElement)) { node.dataset.motionSeen = 'true'; return; }
-      if (card === node) {
+      if (node.matches('.review-fan')) {
+        // The fan owns one entrance; fixed slots stagger without changing
+        // the cards' hover transforms or their pointer hit areas.
+        register(node, () => Array.from(node.querySelectorAll<HTMLElement>('.review-slot'), (slot, index) => part(slot, index * 140, true)));
+      } else if (card === node) {
         register(node, () => {
           const heading = node.querySelector<HTMLElement>('h3');
           const copy = node.querySelector<HTMLElement>('.project-caption p,.service-copy p');
