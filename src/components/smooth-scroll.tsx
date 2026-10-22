@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import { useMotion } from "./motion-provider";
+import { textareaConsumesWheel } from "@/lib/scroll";
 
 /** Lenis keeps the native document scroll; touch and keyboard remain native. */
 export function SmoothScroll() {
@@ -12,14 +13,22 @@ export function SmoothScroll() {
     let cleanup = () => {};
     void import('lenis').then(({ default: Lenis }) => {
       if (disposed) return;
-      const lenis = new Lenis({
+      let lenis: InstanceType<typeof Lenis>;
+      lenis = new Lenis({
         autoRaf: true,
         lerp: .115,
         smoothWheel: true,
         syncTouch: false,
         wheelMultiplier: .9,
         anchors: { duration: 1.05 },
-        prevent: node => node.matches('textarea,[data-lenis-prevent],.review-fan,.mobile-nav'),
+        prevent: node => node.matches('[data-lenis-prevent],.mobile-nav'),
+        virtualScroll: ({ event, deltaY }) => {
+          if (event.type !== 'wheel' || event.ctrlKey || !textareaConsumesWheel(event.target, deltaY)) return true;
+          // Stop the document's old wheel inertia before the text field
+          // scrolls natively. At either edge, resume the document normally.
+          lenis.scrollTo(window.scrollY, { immediate: true, force: true });
+          return false;
+        },
       });
       const locked = () => document.documentElement.matches('.is-loading,.is-navigating,.menu-open');
       let wasLocked: boolean | undefined;
