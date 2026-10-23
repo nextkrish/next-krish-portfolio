@@ -12,7 +12,7 @@ export function Hero() {
       <a className="portrait-explore" href="#selected-work" data-magnetic data-cursor="Explore" aria-label="Explore work — selected projects"><Arrow /><span>Explore work</span></a>
       <span className="portrait-note eyebrow" aria-hidden="true">A little closer.<br />Move your cursor.</span>
     </div>
-    <div className="hero-type"><h1 id="hero-title" className="hero-name" data-reveal="hero">Next <em>Krish</em></h1><p className="hero-tagline" data-hero-detail>I cook Projects!</p><p className="hero-description" data-hero-detail>Yo! I’m Krish — a BCA student turning ideas into websites.</p><div className="hero-actions" data-hero-detail><Button href="#selected-work" light>Explore my work</Button><Button href="/contact">Let’s talk</Button></div></div>
+    <div className="hero-type"><h1 id="hero-title" className="hero-name" data-reveal="hero">Next <em>Krish</em></h1><p className="hero-tagline" data-hero-detail>I cook Projects!</p><p className="hero-description" data-hero-detail>Yo! I’m Krish — a BCA student and website developer in Agra, turning ideas into websites.</p><div className="hero-actions" data-hero-detail><Button href="#selected-work" light>Explore my work</Button><Button href="/contact">Let’s talk</Button></div></div>
     <div className="hero-bottom eyebrow"><a href="#curiosity">Scroll to discover <Arrow direction="down" /></a><span>A personal portfolio / 2026</span><span>Code with a little character.</span></div>
   </section>;
 }
