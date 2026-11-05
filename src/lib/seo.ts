@@ -16,12 +16,18 @@ const isPreview = process.env.VERCEL_ENV === "preview"
 export const indexable = Boolean(siteOrigin) && !isPreview;
 export const absoluteUrl = (path = "/") => siteOrigin ? `${siteOrigin}${path}` : undefined;
 
+export const shareImage = {
+  url: "/opengraph-image?v=20261105",
+  width: 1200, height: 630, type: "image/png",
+  alt: "Next Krish — Krish Kumar. Landing pages and business websites.",
+};
+
 export function pageMetadata(path: string, title: string, description: string): Metadata {
   return {
     title, description,
     ...(siteOrigin ? { alternates: { canonical: absoluteUrl(path) } } : {}),
-    openGraph: { title: `${title} — Next Krish`, description, url: absoluteUrl(path), siteName: "Next Krish", type: "website", locale: "en_IN" },
-    twitter: { card: "summary_large_image", title: `${title} — Next Krish`, description },
+    openGraph: { title: `${title} — Next Krish`, description, url: absoluteUrl(path), siteName: "Next Krish", type: "website", locale: "en_IN", images: [shareImage] },
+    twitter: { card: "summary_large_image", title: `${title} — Next Krish`, description, images: [shareImage] },
   };
 }
 

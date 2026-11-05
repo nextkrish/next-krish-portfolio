@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { siteOrigin, indexable } from "@/lib/seo";
+import { siteOrigin, indexable, shareImage } from "@/lib/seo";
 import { StructuredData } from "@/components/structured-data";
 import { profile, socials } from "@/lib/content";
 import localFont from "next/font/local";
@@ -21,8 +21,8 @@ export const metadata: Metadata = {
   title: { default: "Next Krish — I cook Projects!", template: "%s — Next Krish" },
   description: "Krish Kumar — BCA student and website developer. Thoughtful websites, expressive interactions, and a little curiosity. Open to projects and opportunities.",
   authors: [{ name: "Krish Kumar" }],
-  openGraph: { title: "Next Krish — I cook Projects!", description: "Thoughtful websites. Expressive interactions. Explore the work of Krish Kumar.", type: "website", locale: "en_IN", siteName: "Next Krish" },
-  twitter: { card: "summary_large_image" },
+  openGraph: { title: "Next Krish — I cook Projects!", description: "Thoughtful websites. Expressive interactions. Explore the work of Krish Kumar.", type: "website", locale: "en_IN", siteName: "Next Krish", images: [shareImage] },
+  twitter: { card: "summary_large_image", images: [shareImage] },
   creator: "Krish Kumar",
   applicationName: "Next Krish",
   icons: { icon: "/icon.png", apple: "/apple-icon.png" },

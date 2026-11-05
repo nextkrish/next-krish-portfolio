@@ -9,7 +9,7 @@ import { FAQ } from "@/components/faq";
 import { projects, profile } from "@/lib/content";
 import { Arrow } from "@/components/icons";
 
-export const metadata = { ...pageMetadata("/", "Website developer & BCA student", "Next Krish is the portfolio of Krish Kumar, a BCA student building landing pages and business websites. Explore four live projects or start a conversation."), title: { absolute: "Next Krish — Krish Kumar | Website Developer" } };
+export const metadata = { ...pageMetadata("/", "Website developer in Agra", "Need a website? Next Krish (Krish Kumar) builds landing pages and business websites. Explore four live projects and discuss your website idea."), title: { absolute: "Next Krish — Website Developer in Agra | Krish Kumar" } };
 
 export default function Home() {
   return <>
